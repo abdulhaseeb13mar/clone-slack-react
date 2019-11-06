@@ -5,3 +5,66 @@ body,
   background: black;
   padding: 1em;
 }
+
+/* Messages */
+
+.messages {
+  height: 440px;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+/* MessageForm.js */
+
+.message__form {
+  position: fixed !important;
+  bottom: 1em;
+  margin-left: 320px !important;
+  left: 0;
+  right: 1em;
+  z-index: 200;
+}
+
+/* Message.js */
+
+.message__self {
+  border-left: 2px solid orange;
+  padding-left: 8px;
+}
+
+.message__image {
+  padding: 1em;
+}
+
+/* progressBar.js */
+
+.progress__ar {
+  margin: 0.3em 0 0 0 !important;
+}
+
+/*  SidePanel  */
+
+.menu {
+  padding-bottom: 2em;
+}
+
+/* colorPanel */
+
+.color__container {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  width: 35px;
+  border-radius: 3px;
+}
+
+.color__square {
+  width: 35px;
+  height: 35px;
+}
+
+.color__overlay {
+  width: 85px;
+  height: 35px;
+  transform: rotate(225deg);
+}

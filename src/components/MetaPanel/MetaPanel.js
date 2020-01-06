@@ -15,7 +15,8 @@ class MetaPanel extends React.Component {
     channel: this.props.currentChannel,
     activeIndex: 0,
     privateChannel: this.props.isPrivateChannel,
-    orderedUser: []
+    orderedUser: [],
+    userRef: firebase.auth().currentUser
   };
 
   componentDidMount() {
@@ -51,20 +52,27 @@ class MetaPanel extends React.Component {
 
   formatCount = num => (num > 1 || num === 0 ? `${num} posts` : `${num} post`);
 
-  renderTopUsers = () =>
-    this.state.orderedUser
-      .map((channelUser, key) => (
-        <List.Item key={key}>
-          <Image avatar src={channelUser[1].avatar} />
-          <List.Content>
+  renderTopUsers = () => {
+    return this.state.orderedUser
+      .map((channelUser, key) => {
+        if (this.state.userRef.uid === channelUser[1].id) {
+          channelUser[1].avatar = this.state.userRef.photoURL;
+        }
+        return (
+          <List.Item key={key}>
+            {/* <Image avatar src={channelUser[1].avatar} /> */}
+            {/* <List.Content> */}
             <List.Header as="a">{channelUser[1].name}</List.Header>
             <List.Description>
-              {this.formatCount(channelUser[1].count)} posts
+              {this.formatCount(channelUser[1].count)}
             </List.Description>
-          </List.Content>
-        </List.Item>
-      ))
+            {/* </List.Content> */}
+          </List.Item>
+        );
+      })
       .slice(0, 5);
+  };
+
   render() {
     if (this.state.privateChannel) return null;
 
